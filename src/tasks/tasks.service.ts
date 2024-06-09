@@ -44,7 +44,17 @@ export class TasksService {
 
   async markTaskAsCompleted(id: string): Promise<Task> {
     const updatedTask = await this.taskModel
-      .findByIdAndUpdate(id, { isCompleted: true }, { new: true })
+      .findByIdAndUpdate(id, { completionStatus: 'completed' }, { new: true })
+      .exec();
+    if (!updatedTask) {
+      throw new NotFoundException(`Task with ID "${id}" not found`);
+    }
+    return updatedTask;
+  }
+
+  async markTaskAsProgress(id: string): Promise<Task> {
+    const updatedTask = await this.taskModel
+      .findByIdAndUpdate(id, { completionStatus: 'progress' }, { new: true })
       .exec();
     if (!updatedTask) {
       throw new NotFoundException(`Task with ID "${id}" not found`);

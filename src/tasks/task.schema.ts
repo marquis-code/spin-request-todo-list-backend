@@ -11,8 +11,8 @@ export class Task {
   @Prop({ required: true })
   description: string;
 
-  @Prop({ default: false })
-  isCompleted: boolean;
+  @Prop({ default: 'pending' })
+  completionStatus: string;
 }
 
 export const TaskSchema = SchemaFactory.createForClass(Task);

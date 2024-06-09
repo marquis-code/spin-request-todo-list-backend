@@ -6,5 +6,5 @@ export class CreateTaskDto {
 export class UpdateTaskDto {
   readonly title?: string;
   readonly description?: string;
-  readonly isCompleted?: boolean;
+  readonly completionStatus?: string;
 }
